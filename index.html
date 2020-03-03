@@ -4,15 +4,22 @@
     <title>Page Title</title>
 
     <link rel="stylesheet" type="text/css" href="index.css" />
+    <link rel="stylesheet" type="text/css" href="material.css" />
+    <link rel="stylesheet" type="text/css" href="theme.css" />
+
     <script src="util.js"></script>
     <script src="AppButton.js"></script>
+    <script src="AppCard.js"></script>
   </head>
 
   <body>
     <div class="container">
-      <h1>This is a Heading</h1>
-      <p>This is a paragraph.</p>
-      <app-button onClick="appAlert('xD')"></app-button>
+      <app-card>
+        <app-button contained>Contained</app-button>
+        <app-button outlined>Outlined</app-button>
+        <app-button text>Text</app-button>
+        <app-button disabled>Disabled</app-button>
+      </app-card>
     </div>
   </body>
 </html>

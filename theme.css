@@ -1,0 +1,20 @@
+:root {
+  --primary: rgb(21, 101, 192);
+  --primary-variant: #0d47a1;
+  --secondary: #fbc02d;
+  --secondary-variant: #f57f17;
+
+  --divider: #999999;
+  --background: #ffffff;
+  --surface: #e3f2fd;
+  --error: #d50000;
+
+  --on-primary: #ffffff;
+  --on-secondary: #000000;
+
+  --on-background: #000000;
+  --on-surface: #000000;
+  --on-error: #ffffff;
+
+  --primary-hover: rgb(21, 101, 192, 0.04);
+}

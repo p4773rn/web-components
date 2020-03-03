@@ -1,0 +1,60 @@
+:root {
+  /* Paddings and Margins */
+  --all-1: 4px;
+  --all-2: 8px;
+  --all-3: 16px;
+  --all-4: 32px;
+
+  --top-1: 4px 0 0 0;
+  --top-2: 8px 0 0 0;
+  --top-3: 16px 0 0 0;
+  --top-4: 32px 0 0 0;
+
+  --right-1: 0 4px 0 0;
+  --right-2: 0 8px 0 0;
+  --right-3: 0 16px 0 0;
+  --right-4: 0 32px 0 0;
+
+  --bottom-1: 0 0 4px 0;
+  --bottom-2: 0 0 8px 0;
+  --bottom-3: 0 0 16px 0;
+  --bottom-4: 0 0 32px 0;
+
+  --left-1: 0 0 0 4px;
+  --left-2: 0 0 0 8px;
+  --left-3: 0 0 0 16px;
+  --left-4: 0 0 0 32px;
+
+  --horizontal-1: 0 4px;
+  --horizontal-2: 0 8px;
+  --horizontal-3: 0 16px;
+  --horizontal-4: 0 32px;
+
+  --vertical-1: 4px 0;
+  --vertical-2: 8px 0;
+  --vertical-3: 16px 0;
+  --vertical-4: 32px 0;
+
+  /* Elevation, source: https://gist.github.com/serglo/f9f0be9a66fd6755a0bda85f9c64e85f */
+  --elevation-0dp: none;
+  --elevation-1dp: 0 1px 1px 0 rgba(0, 0, 0, 0.14),
+    0 2px 1px -1px rgba(0, 0, 0, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  --elevation-2dp: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  --elevation-3dp: 0 3px 4px 0 rgba(0, 0, 0, 0.14),
+    0 3px 3px -2px rgba(0, 0, 0, 0.12), 0 1px 8px 0 rgba(0, 0, 0, 0.2);
+  --elevation-4dp: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+    0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  --elevation-6dp: 0 6px 10px 0 rgba(0, 0, 0, 0.14),
+    0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+  --elevation-8dp: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+  --elevation-9dp: 0 9px 12px 1px rgba(0, 0, 0, 0.14),
+    0 3px 16px 2px rgba(0, 0, 0, 0.12), 0 5px 6px -3px rgba(0, 0, 0, 0.2);
+  --elevation-12dp: 0 12px 17px 2px rgba(0, 0, 0, 0.14),
+    0 5px 22px 4px rgba(0, 0, 0, 0.12), 0 7px 8px -4px rgba(0, 0, 0, 0.2);
+  --elevation-16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14),
+    0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+  --elevation-24dp: 0 24px 38px 3px rgba(0, 0, 0, 0.14),
+    0 9px 46px 8px rgba(0, 0, 0, 0.12), 0 11px 15px -7px rgba(0, 0, 0, 0.2);
+}

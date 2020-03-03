@@ -1,3 +1,3 @@
 # web-components
 
-### Learning web components
+Learning web components

@@ -1,7 +1,13 @@
+html,
+body {
+  background: #eee;
+}
 .container {
-  margin: auto;
-  width: 800px;
+  display: flex;
+  justify-content: center;
+}
 
-  text-align: center;
-  background: #dddddd;
+.padding-test-container {
+  background: #fff;
+  text-align: justify;
 }
