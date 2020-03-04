@@ -6,9 +6,10 @@ appCard.innerHTML = `
 <style>
     .app-card {
         padding: var(--all-2);
-        min-width: 500px;
+        margin: var(--all-1);
+        width: 500px;
         box-shadow: var(--elevation-4dp);
-        background: white;
+        background: var(--surface);
     }
 </style>
 `

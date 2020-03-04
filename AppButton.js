@@ -1,9 +1,11 @@
 // Contained button, for now
-const appButton = document.createElement('template')
-appButton.innerHTML = `
+const appButtonTemplate = document.createElement('template')
+appButtonTemplate.innerHTML = `
 <style>
-  /* Base style */
-  .container {
+  /* Base (Text) style */
+  button {
+    position: relative;
+
     min-width: 64px;
     height: 36px;
 
@@ -15,129 +17,122 @@ appButton.innerHTML = `
 
     box-shadow: var(--elevation-0dp);
 
+    cursor: pointer;
+
     transition: all 0.1s;
+
+    z-index: 0;
   }
-  .container:focus {
+  button:focus {
     outline: none;
+  }
+  button:focus > .overlay {
+    opacity: 0.12;
+  }
+  button:hover > .overlay {
+    opacity: 0.08;
+  }
+  button:active > .overlay {
+    opacity: 0.16;
   }
 
   .text {
+    position: relative;
     text-transform: uppercase;
     font-weight: bolder;
     font-size: 14px;
+    color: var(--primary);
 
+    z-index: 2;
+  }
+
+  /* Disabled style */
+  :host([type="disabled"]) {
+    cursor: default;
+    pointer-events: none;
+    user-select: none;
+  }
+  button:disabled {
+    background: var(--disabled);
+    cursor: default;
+  }
+  button:disabled > .text {
+    color: var(--on-disabled)
   }
 
   /* Contained button style */
-  .container--contained {
+  :host([type="contained"]) > button {
     box-shadow: var(--elevation-2dp);
     background-color: var(--primary)
   }
-  .container--contained:hover {
+  :host([type="contained"]) > button:hover {
     box-shadow: var(--elevation-4dp);
   }
-  .container--contained:active {
+  :host([type="contained"]) > button:active {
     box-shadow: var(--elevation-8dp);
   }
-  .text--contained {
+  :host([type="contained"]) > button > .text {
     color: var(--on-primary)
   }
 
-  /* Outlined button style */
-  .container--outlined {
-    border: 1px solid var(--divider);
-    border-radius: 4px;
+  /* Overlay */
+  .overlay {
+    position: absolute;
+    padding: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary);
+    opacity: 0;
+    z-index: 1;
   }
-  .container--outlined:hover {
-    background: var(--primary-hover);
-  }
-  .container--outlined:active {
-    background: var(--primary-hover);
-    box-shadow: var(--elevation-0dp);
-  }
-  .text--outlined {
-    color: var(--primary)
-  }
-
-  /* Text button style */
-  .container--text {
-  }
-  .container--text:hover {
-    background: var(--primary-hover);
-  }
-  .text--text {
-    color: var(--primary)
-  }
-
 </style>
+<button onClick="">
+  <span class="text">
+    <slot>Submit</slot>
+  </span>
+  <span class="overlay"></span>
+</button>
 
-<button type="button" id="button" class="container"><slot id="text" class="text">Submit</slot></button>
 `
 class AppButton extends HTMLElement {
   static get observedAttributes() {
-    return ['contained', 'outlined', 'text']
+    return ['type']
   }
-
   constructor() {
     super()
 
     const shadowRoot = this.attachShadow({ mode: 'open' })
-    shadowRoot.appendChild(appButton.content.cloneNode(true))
+    shadowRoot.appendChild(appButtonTemplate.content.cloneNode(true))
   }
 
   connectedCallback() {
+    const button = this.shadowRoot.querySelector('button')
     if (!this.hasAttribute('role')) this.setAttribute('role', 'button')
-    if (!this.hasAttribute('tabindex')) this.setAttribute('tabindex', 0)
-    if (this.contained) {
-      this.setType('contained')
-    } else if (this.outlined) {
-      this.setType('outlined')
-    } else if (this.text) {
-      this.setType('text')
-    }
-  }
-
-  setType(type) {
-    this.shadowRoot.getElementById('button').classList.add(`container--${type}`)
-    this.shadowRoot.getElementById('text').classList.add(`text--${type}`)
-  }
-
-  get contained() {
-    return this.hasAttribute('contained')
-  }
-  set contained(val) {
-    if (val) {
-      this.setAttribute('contained', '')
-    } else {
-      this.removeAttribute('contained')
-    }
-  }
-
-  get outlined() {
-    return this.hasAttribute('outlined')
-  }
-  set outlined(val) {
-    if (val) {
-      this.setAttribute('outlined', '')
-    } else {
-      this.removeAttribute('outlined')
-    }
-  }
-
-  get text() {
-    return this.hasAttribute('text')
-  }
-  set text(val) {
-    if (val) {
-      this.setAttribute('text', '')
-    } else {
-      this.removeAttribute('text')
-    }
+    if (this.type === 'disabled') button.setAttribute('disabled', '')
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    if (this.contained) {
+    const hasValue = newValue !== null
+    if (newValue === 'disabled') {
+      this.shadowRoot.querySelector('button').setAttribute('disabled', '')
+    }
+  }
+
+  get type() {
+    if (this.hasAttribute('type')) {
+      return this.attributes.type.value
     } else {
+      return false
+    }
+  }
+  set type(val) {
+    const hasType = Boolean(val)
+    if (hasType) {
+      this.setAttribute('type', val)
+    } else {
+      this.removeAttribute('type')
     }
   }
 }

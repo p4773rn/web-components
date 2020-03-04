@@ -9,16 +9,27 @@
 
     <script src="util.js"></script>
     <script src="AppButton.js"></script>
+    <script src="AppTextField.js"></script>
     <script src="AppCard.js"></script>
   </head>
 
   <body>
     <div class="container">
       <app-card>
-        <app-button contained>Contained</app-button>
-        <app-button outlined>Outlined</app-button>
+        <app-button type="contained" onClick="log(this)">Contained</app-button>
         <app-button text>Text</app-button>
-        <app-button disabled>Disabled</app-button>
+        <app-button type="disabled" onClick="toggleDisabled(this)"
+          >Disabled</app-button
+        >
+      </app-card>
+
+      <app-card>
+        <app-button type="contained" onClick="toggleDisabled(this)"
+          >Click to disable</app-button
+        >
+      </app-card>
+      <app-card>
+        <app-text-field></app-text-field>
       </app-card>
     </div>
   </body>

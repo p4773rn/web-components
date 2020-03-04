@@ -6,8 +6,10 @@
 
   --divider: #999999;
   --background: #ffffff;
-  --surface: #e3f2fd;
+  --surface: #f6fbff;
   --error: #d50000;
+
+  --disabled: #dddddd;
 
   --on-primary: #ffffff;
   --on-secondary: #000000;
@@ -16,5 +18,10 @@
   --on-surface: #000000;
   --on-error: #ffffff;
 
-  --primary-hover: rgb(21, 101, 192, 0.04);
+  --on-disabled: #666666;
+
+  --primary-hover: rgba(21, 101, 192, 0.08);
+  --primary-active: rgba(21, 101, 192, 0.16);
+
+  --input-hover: black;
 }
