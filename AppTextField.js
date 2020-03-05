@@ -5,8 +5,10 @@ appTextFieldTemplate.innerHTML = `
 /* Container */
 .container {
   display: flex;
+  align-items: stretch;
   position: relative;
   max-width: 250px;
+  font-family: Roboto, sans-serif;
 }
 
 .container:focus {
@@ -16,13 +18,13 @@ appTextFieldTemplate.innerHTML = `
 /* Input */
 input {
   position: absolute;
-  width: calc(100% - 28px);
-  padding: 0;
+  width: calc(100% - 24px);
+  padding: 12px 8px 12px 14px;
   border: none;
-  top: 16px;
-  left: 14px; 
+  top: 1px;
+  left: 1px; 
   font-size: 1rem;
-  background: rgba(0, 0, 0, 0.5);
+  background: transparent;
   
 }
 
@@ -39,7 +41,6 @@ input:focus {
 }
 .leading {
   width: 14px;
-  background: rgba(255, 0, 0, 0.4);
 
   border-right: none;
 
@@ -48,15 +49,13 @@ input:focus {
 }
 .notch {
   position: relative;
-  background: rgba(0, 255, 0, 0.4);
-
+  padding: 12px 2px;
   border-right: none;
   border-left: none;
   border-radius: 0;
 }
 .trailing {
   flex: 1;
-  background: rgba(0, 0, 255, 0.4);
 
   border-left: none;
   border-top-left-radius: 0;
@@ -69,15 +68,23 @@ label {
   top: 0;
   left: 0;
   font-size: 1rem;
-  transition: all 200ms;
+  transition: all 150ms;
+  background: transparent;
 }
-input:focus ~ .notch > label {
-  top: -28px;
+input:not(:placeholder-shown) ~ .notch, input:focus ~ .notch {
+  border-top-color: transparent;
+}
+input:not(:placeholder-shown) ~ .notch > label, input:focus ~ .notch > label {
+  top: calc(-28px + 0.375rem);
   font-size: 0.75rem;
 }
+
+input::placeholder {
+  color: transparent;
+}
 </style>
-<div class="container" onclick="this.getRootNode().host.focus()">
-  <input name="main">
+<div class="container">
+  <input placeholder="stub" name="main">
   <div class="outline leading"></div>
   <div class="outline notch">
     <label for="main">Label</label>
@@ -92,18 +99,6 @@ class AppTextField extends HTMLElement {
 
     const shadowRoot = this.attachShadow({ mode: 'open' })
     shadowRoot.appendChild(appTextFieldTemplate.content.cloneNode(true))
-  }
-
-  connectedCallback() {
-    const input = this.shadowRoot.querySelector('input')
-    const label = this.shadowRoot.querySelector('label')
-  }
-
-  focus() {
-    // Allow text input
-    console.log('xD')
-    const input = this.shadowRoot.querySelector('input')
-    input.focus()
   }
 }
 
