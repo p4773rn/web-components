@@ -2,37 +2,65 @@
 <html>
   <head>
     <title>Page Title</title>
-
+    <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="index.css" />
     <link rel="stylesheet" type="text/css" href="material.css" />
     <link rel="stylesheet" type="text/css" href="theme.css" />
 
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap&subset=cyrillic"
+      rel="stylesheet"
+    />
+
+    <!-- Utility scripts -->
     <script src="util.js"></script>
+
+    <!-- Components -->
     <script src="AppButton.js"></script>
-    <script src="AppTextField.js"></script>
     <script src="AppCard.js"></script>
+    <script src="AppTextField.js"></script>
+    <script src="AppTypography.js"></script>
+    <script type="module"></script>
   </head>
 
   <body>
     <div class="container">
-      <app-card>
-        <app-button type="contained" onClick="log(this)">Contained</app-button>
+      <app-card headline="Buttons">
+        <app-button type="contained">Contained</app-button>
         <app-button text>Text</app-button>
-        <app-button type="disabled" onClick="toggleDisabled(this)"
-          >Disabled</app-button
-        >
+        <app-button type="disabled" onClick="log(this)">Disabled</app-button>
       </app-card>
 
-      <app-card>
+      <app-card headline="Button with function">
         <app-button type="contained" onClick="toggleDisabled(this)"
           >Click to disable</app-button
         >
       </app-card>
-      <app-card>
+      <app-card headline="Text field">
         <app-text-field required>
           <span slot="label">Password</span>
         </app-text-field>
       </app-card>
+      <app-card headline="Typography">
+        <div style="display: flex; flex-direction: column;">
+          <app-typography type="headline-1" text="Headline 1"></app-typography>
+          <app-typography type="headline-2" text="Headline 2"></app-typography>
+          <app-typography type="headline-3" text="Headline 3"></app-typography>
+          <app-typography type="headline-4" text="Headline 4"></app-typography>
+          <app-typography type="headline-5" text="Headline 5"></app-typography>
+          <app-typography type="headline-6" text="Headline 6"></app-typography>
+
+          <app-typography type="subtitle-1" text="Subtitle 1"></app-typography>
+          <app-typography type="subtitle-2" text="Subtitle 2"></app-typography>
+          <app-typography type="body-1" text="Body 1"></app-typography>
+          <app-typography type="body-2" text="Body 2"></app-typography>
+          <app-typography type="button" text="Button"></app-typography>
+          <app-typography type="caption" text="Caption"></app-typography>
+          <app-typography type="overline" text="Overline"></app-typography>
+        </div>
+      </app-card>
+      <app-card headline="Select"></app-card>
     </div>
   </body>
 </html>
