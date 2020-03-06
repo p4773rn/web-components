@@ -4,7 +4,7 @@
   --secondary: #fbc02d;
   --secondary-variant: #f57f17;
 
-  --divider: #999999;
+  --divider: #bbbbbb;
   --background: #ffffff;
   --surface: #f6fbff;
   --error: #d50000;
@@ -24,4 +24,7 @@
   --primary-active: rgba(21, 101, 192, 0.16);
 
   --input-hover: black;
+
+  /* Colors */
+  --dark-gray: rgb(117, 117, 117);
 }

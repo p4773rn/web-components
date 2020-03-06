@@ -9,6 +9,7 @@ appTextFieldTemplate.innerHTML = `
   position: relative;
   max-width: 250px;
   font-family: Roboto, sans-serif;
+  background: transparent;
 }
 
 .container:focus {
@@ -25,7 +26,7 @@ input {
   left: 1px; 
   font-size: 1rem;
   background: transparent;
-  
+
 }
 
 input:focus {
@@ -37,7 +38,7 @@ input:focus {
   padding: 12px 0;
   transition: all 150ms;
   border-radius: 4px;
-  border: 1px solid;
+  border: 1px solid var(--divider);
 }
 .leading {
   width: 14px;
@@ -53,6 +54,7 @@ input:focus {
   border-right: none;
   border-left: none;
   border-radius: 0;
+  pointer-events: none;
 }
 .trailing {
   flex: 1;
@@ -70,15 +72,28 @@ label {
   font-size: 1rem;
   transition: all 150ms;
   background: transparent;
+  color: var(--dark-gray);
 }
+
+/* All border manipulations should be above Floating Label style */
+input:hover ~ .outline {
+  border-color: var(--input-hover);
+}
+input:focus ~ .outline {
+  border-color: var(--primary);
+}
+
+/* Floating label */
 input:not(:placeholder-shown) ~ .notch, input:focus ~ .notch {
   border-top-color: transparent;
 }
 input:not(:placeholder-shown) ~ .notch > label, input:focus ~ .notch > label {
   top: calc(-28px + 0.375rem);
   font-size: 0.75rem;
+  color: var(--primary)
 }
 
+/* Inisible placeholder hack to detect existing input text and keep label floating */
 input::placeholder {
   color: transparent;
 }
@@ -87,7 +102,7 @@ input::placeholder {
   <input placeholder="stub" name="main">
   <div class="outline leading"></div>
   <div class="outline notch">
-    <label for="main">Label</label>
+    <label for="main"><slot name='label'>Label</slot></label>
   </div>
   <div class="outline trailing"></div>
 </div>
