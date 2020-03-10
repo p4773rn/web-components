@@ -2,6 +2,9 @@
 const appButtonTemplate = document.createElement('template')
 appButtonTemplate.innerHTML = `
 <style>
+  :host {
+    display: block;
+  }
   /* Base (Text) style */
   button {
     position: relative;

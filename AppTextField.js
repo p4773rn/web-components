@@ -50,7 +50,7 @@ input:focus {
 }
 .notch {
   position: relative;
-  padding: 12px 2px;
+  padding: 12px 4px;
   border-right: none;
   border-left: none;
   border-radius: 0;
@@ -81,6 +81,9 @@ input:hover ~ .outline {
 }
 input:focus ~ .outline {
   border-color: var(--primary);
+  border-width: 2px;
+  padding-top: 11px;
+  padding-bottom: 11px;
 }
 
 /* Floating label */

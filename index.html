@@ -19,16 +19,21 @@
     <!-- Components -->
     <script src="AppButton.js"></script>
     <script src="AppCard.js"></script>
+    <script src="AppMenu.js"></script>
+    <script src="AppMenuDrawer.js"></script>
+    <script src="AppOverlay.js"></script>
+    <script src="AppSelect.js"></script>
     <script src="AppTextField.js"></script>
     <script src="AppTypography.js"></script>
-    <script type="module"></script>
+
+    <!-- Module Components -->
   </head>
 
   <body>
-    <div class="container">
+    <div class="grid">
       <app-card headline="Buttons">
-        <app-button type="contained">Contained</app-button>
-        <app-button text>Text</app-button>
+        <app-button type="contained" onClick="appAlert()">Contained</app-button>
+        <app-button>Text</app-button>
         <app-button type="disabled" onClick="log(this)">Disabled</app-button>
       </app-card>
 
@@ -53,6 +58,7 @@
 
           <app-typography type="subtitle-1" text="Subtitle 1"></app-typography>
           <app-typography type="subtitle-2" text="Subtitle 2"></app-typography>
+
           <app-typography type="body-1" text="Body 1"></app-typography>
           <app-typography type="body-2" text="Body 2"></app-typography>
           <app-typography type="button" text="Button"></app-typography>
@@ -60,7 +66,17 @@
           <app-typography type="overline" text="Overline"></app-typography>
         </div>
       </app-card>
-      <app-card headline="Select"></app-card>
+      <app-card headline="Menu">
+        <app-menu-drawer></app-menu-drawer>
+      </app-card>
+      <app-card headline="Select">
+        <app-select></app-select>
+      </app-card>
+      <app-card headline="RadioButton"></app-card>
+      <app-card headline="DataTable"></app-card>
+      <app-card headline="Overlay">
+        <app-overlay>Overlay</app-overlay>
+      </app-card>
     </div>
   </body>
 </html>

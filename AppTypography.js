@@ -82,6 +82,7 @@ span {
 
 <!-- Template -->
 <span></span>
+
 `
 
 class AppTypography extends HTMLElement {
