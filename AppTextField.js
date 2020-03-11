@@ -2,16 +2,18 @@ const appTextFieldTemplate = document.createElement('template')
 
 appTextFieldTemplate.innerHTML = `
 <style>
-/* Container */
-.container {
+:host {
   display: flex;
   align-items: stretch;
+
   position: relative;
-  min-width: 112px;
-  max-width: 250px;
+
+  height: 100%;
+
   font-family: Roboto, sans-serif;
   background: transparent;
 }
+/* Container */
 
 .container:focus {
   max-width: 200px;
@@ -23,7 +25,8 @@ input {
   width: calc(100% - 24px);
   padding: 12px 8px 12px 14px;
   border: none;
-  top: 1px;
+  top: calc((100% - 24px - 1rem) / 2 - 1px);
+  /* top: 100%; */
   left: 1px; 
   font-size: 1rem;
   background: transparent;
@@ -42,7 +45,7 @@ input:focus {
   border: 1px solid var(--divider);
 }
 .leading {
-  width: 14px;
+  width: 10px;
 
   border-right: none;
 
@@ -70,7 +73,7 @@ input:focus {
 /* Label */
 label {
   position: relative;
-  top: 0;
+  top: calc(50% - 0.5rem - 1px);
   left: 0;
 
   font-size: 1rem;
@@ -84,11 +87,19 @@ label {
 input:hover ~ .outline {
   border-color: var(--input-hover);
 }
+
+/* Add border thickness of 1 px => make all outline divs 1px smaller*/
 input:focus ~ .outline {
   border-color: var(--primary);
   border-width: 2px;
   padding-top: 11px;
   padding-bottom: 11px;
+}
+input:focus ~ .leading {
+  width: 9px;
+}
+input:focus ~ .trailing {
+  padding-right: 13px;
 }
 
 /* Floating label */
@@ -98,6 +109,9 @@ input:not(:placeholder-shown) ~ .notch, input:focus ~ .notch {
 input:not(:placeholder-shown) ~ .notch > label, input:focus ~ .notch > label {
   top: calc(-28px + 0.375rem);
   font-size: 0.75rem;
+}
+
+input:focus ~ .notch > label {
   color: var(--primary)
 }
 
@@ -106,16 +120,14 @@ input::placeholder {
   color: transparent;
 }
 </style>
-<div class="container">
-  <input placeholder="stub" name="main">
-  <div class="outline leading"></div>
-  <div class="outline notch">
-    <label for="main">
-      <slot name='label'>Label</slot>
-    </label>
-  </div>
-  <div class="outline trailing"></div>
+<input placeholder="stub" name="main">
+<div class="outline leading"></div>
+<div class="outline notch">
+  <label for="main">
+    <slot name='label'>Label</slot>
+  </label>
 </div>
+<div class="outline trailing"></div>
 `
 
 class AppTextField extends HTMLElement {

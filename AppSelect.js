@@ -9,6 +9,7 @@ appSelectTemplate.innerHTML = `
 }
 app-text-field {
   width: 100%;
+  height: 56px;
 }
 .menu-wrapper {
   position: relative;
@@ -47,7 +48,7 @@ class AppSelect extends HTMLElement {
     this.$items = [{ text: 'one' }, { text: 'two' }, { text: 'three' }]
 
     this._menu = this._shadowRoot.querySelector('app-menu')
-    this._menu.$items = this.$items
+    this._menu.items = this.$items
 
     this._opener = this._shadowRoot.querySelector('app-text-field')
 
@@ -70,6 +71,7 @@ class AppSelect extends HTMLElement {
   }
 
   showMenu(style) {
+    this._menu.items = this.$items
     style.transition = 'opacity 0.1s linear'
     style.opacity = 1
   }
@@ -79,15 +81,12 @@ class AppSelect extends HTMLElement {
   }
 
   handleInput(input) {
-    // this._menu.$items = this._menu.$items.filter(item =>
-    //   item.text.includes(input.detail)
-    // )
     const filtered = this.$items.filter(item =>
       item.text.includes(input.detail)
     )
-    this._menu.$items = filtered
-    console.log(this._menu.$items)
+    this._menu.items = filtered
   }
+
   // Getters and setters
   get label() {
     if (this.hasAttribute('label')) {

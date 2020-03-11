@@ -44,25 +44,45 @@ class AppMenu extends HTMLElement {
     super()
     this._shadowRoot = this.attachShadow({ mode: 'open' })
     this.shadowRoot.innerHTML = appMenuTemplate.innerHTML
-    if (this.$items === undefined) {
-      this.$items = []
+    if (this._items === undefined) {
+      this._items = []
     }
   }
 
   connectedCallback() {
-    const sr = this._shadowRoot
+    this._render()
+  }
 
-    this.$items.forEach(item => {
+  // TODO: optimize this to create only missing items
+  _render() {
+    const sr = this._shadowRoot
+    const list = sr.querySelector('ul')
+
+    // Clear list
+    list.innerHTML = ''
+    this._items.forEach(item => {
+      const typography = document.createElement('app-body2')
+      typography.innerHTML = item.text
+
       const li = document.createElement('li')
-      li.innerHTML = item.text
+      li.appendChild(typography)
 
       const overlay = document.createElement('app-overlay')
       overlay.appendChild(li)
-      overlay.onclick = sr.querySelector('ul').appendChild(overlay)
+      overlay.onclick = () => {
+        list.dispatchEvent()
+      }
+      list.appendChild(overlay)
     })
   }
 
-  get data() {}
+  get items() {
+    return this._items
+  }
+  set items(val) {
+    this._items = val
+    this._render()
+  }
   // Getters and setters
 }
 
