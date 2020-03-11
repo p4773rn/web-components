@@ -20,11 +20,24 @@
     <script src="AppButton.js"></script>
     <script src="AppCard.js"></script>
     <script src="AppMenu.js"></script>
-    <script src="AppMenuDrawer.js"></script>
     <script src="AppOverlay.js"></script>
     <script src="AppSelect.js"></script>
     <script src="AppTextField.js"></script>
-    <script src="AppTypography.js"></script>
+
+    <!-- Typography -->
+    <script src="app-typography/AppH1.js"></script>
+    <script src="app-typography/AppH2.js"></script>
+    <script src="app-typography/AppH3.js"></script>
+    <script src="app-typography/AppH4.js"></script>
+    <script src="app-typography/AppH5.js"></script>
+    <script src="app-typography/AppH6.js"></script>
+    <script src="app-typography/AppSubtitle1.js"></script>
+    <script src="app-typography/AppSubtitle2.js"></script>
+    <script src="app-typography/AppBody1.js"></script>
+    <script src="app-typography/AppBody2.js"></script>
+    <script src="app-typography/AppButtonText.js"></script>
+    <script src="app-typography/AppCaption.js"></script>
+    <script src="app-typography/AppOverline.js"></script>
 
     <!-- Module Components -->
   </head>
@@ -49,16 +62,20 @@
       </app-card>
       <app-card headline="Typography">
         <div style="display: flex; flex-direction: column;">
-          <app-typography type="headline-1" text="Headline 1"></app-typography>
-          <app-typography type="headline-2" text="Headline 2"></app-typography>
-          <app-typography type="headline-3" text="Headline 3"></app-typography>
-          <app-typography type="headline-4" text="Headline 4"></app-typography>
-          <app-typography type="headline-5" text="Headline 5"></app-typography>
-          <app-typography type="headline-6" text="Headline 6"></app-typography>
+          <app-h1>Headline 1</app-h1>
+          <app-h2>Headline 2</app-h2>
+          <app-h3>Headline 3</app-h3>
+          <app-h4>Headline 4</app-h4>
+          <app-h5>Headline 5</app-h5>
+          <app-h6>Headline 6</app-h6>
+          <app-subtitle1>Subtitle 1</app-subtitle1>
+          <app-subtitle2>Subtitle 2</app-subtitle2>
 
-          <app-typography type="subtitle-1" text="Subtitle 1"></app-typography>
-          <app-typography type="subtitle-2" text="Subtitle 2"></app-typography>
-
+          <app-body1>Body 1</app-body1>
+          <app-body2>Body 2</app-body2>
+          <app-button-text>Submit</app-button-text>
+          <app-caption>Caption</app-caption>
+          <app-overline>Overline</app-overline>
           <app-typography type="body-1" text="Body 1"></app-typography>
           <app-typography type="body-2" text="Body 2"></app-typography>
           <app-typography type="button" text="Button"></app-typography>
@@ -66,10 +83,7 @@
           <app-typography type="overline" text="Overline"></app-typography>
         </div>
       </app-card>
-      <app-card headline="Menu">
-        <app-menu-drawer></app-menu-drawer>
-      </app-card>
-      <app-card headline="Select">
+      <app-card headline="Select + Menu">
         <app-select></app-select>
       </app-card>
       <app-card headline="RadioButton"></app-card>

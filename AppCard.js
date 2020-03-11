@@ -25,7 +25,7 @@ app-typography {
 
 <!-- Template -->
 <div class="header">
-  <app-typography type="subtitle-1"></app-typography>
+  <app-subtitle1></app-subtitle1>
 </div>
 <div class="content">
   <slot></slot>
@@ -41,11 +41,11 @@ class AppCard extends HTMLElement {
     super()
     this._shadowRoot = this.attachShadow({ mode: 'open' })
     this.shadowRoot.innerHTML = appCardTemplate.innerHTML
-    this.$headline = this._shadowRoot.querySelector('app-typography')
+    this.$headline = this._shadowRoot.querySelector('app-subtitle1')
   }
 
   connectedCallback() {
-    this.$headline.setAttribute('text', this.getAttribute('headline'))
+    this.$headline.innerHTML = this.getAttribute('headline')
   }
 
   // Getters and setters

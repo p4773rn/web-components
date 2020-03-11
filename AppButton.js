@@ -10,6 +10,7 @@ appButtonTemplate.innerHTML = `
     position: relative;
 
     min-width: 64px;
+    width: 100%;
     height: 36px;
 
     padding: var(--horizontal-3);
@@ -39,11 +40,8 @@ appButtonTemplate.innerHTML = `
     opacity: 0.16;
   }
 
-  .text {
+  app-button-text {
     position: relative;
-    text-transform: uppercase;
-    font-weight: bolder;
-    font-size: 14px;
     color: var(--primary);
 
     z-index: 2;
@@ -59,7 +57,7 @@ appButtonTemplate.innerHTML = `
     background: var(--disabled);
     cursor: default;
   }
-  button:disabled > .text {
+  button:disabled > app-button-text {
     color: var(--on-disabled)
   }
 
@@ -74,7 +72,7 @@ appButtonTemplate.innerHTML = `
   :host([type="contained"]) > button:active {
     box-shadow: var(--elevation-8dp);
   }
-  :host([type="contained"]) > button > .text {
+  :host([type="contained"]) > button > app-button-text {
     color: var(--on-primary)
   }
 
@@ -92,9 +90,9 @@ appButtonTemplate.innerHTML = `
   }
 </style>
 <button onClick="">
-  <span class="text">
+  <app-button-text>
     <slot>Submit</slot>
-  </span>
+  </app-button-text>
   <span class="overlay"></span>
 </button>
 

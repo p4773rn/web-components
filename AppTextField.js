@@ -7,6 +7,7 @@ appTextFieldTemplate.innerHTML = `
   display: flex;
   align-items: stretch;
   position: relative;
+  min-width: 112px;
   max-width: 250px;
   font-family: Roboto, sans-serif;
   background: transparent;
@@ -59,6 +60,8 @@ input:focus {
 .trailing {
   flex: 1;
 
+  padding-right: 14px;
+
   border-left: none;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
@@ -69,10 +72,12 @@ label {
   position: relative;
   top: 0;
   left: 0;
+
   font-size: 1rem;
-  transition: all 150ms;
   background: transparent;
   color: var(--dark-gray);
+
+  transition: all 150ms;
 }
 
 /* All border manipulations should be above Floating Label style */
@@ -105,7 +110,9 @@ input::placeholder {
   <input placeholder="stub" name="main">
   <div class="outline leading"></div>
   <div class="outline notch">
-    <label for="main"><slot name='label'>Label</slot></label>
+    <label for="main">
+      <slot name='label'>Label</slot>
+    </label>
   </div>
   <div class="outline trailing"></div>
 </div>
@@ -117,6 +124,21 @@ class AppTextField extends HTMLElement {
 
     const shadowRoot = this.attachShadow({ mode: 'open' })
     shadowRoot.appendChild(appTextFieldTemplate.content.cloneNode(true))
+    this.$input = shadowRoot.querySelector('input')
+  }
+
+  connectedCallback() {
+    this.$input.onfocus = () => {
+      this.dispatchEvent(new CustomEvent('onfocus'))
+    }
+    this.$input.onblur = () => {
+      this.dispatchEvent(new CustomEvent('onblur'))
+    }
+    this.$input.oninput = () => {
+      this.dispatchEvent(
+        new CustomEvent('oninput', { detail: this.$input.value })
+      )
+    }
   }
 }
 

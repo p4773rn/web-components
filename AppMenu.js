@@ -3,26 +3,27 @@ appMenuTemplate.innerHTML = `
 <!-- Style -->
 <style>
 :host {
-  display: inline-block;
+  display: block;
   
   min-width: 112px;
-  max-width: 280px;
-
   border-radius: 4px;
 
   box-shadow: var(--elevation-2dp);
   background: var(--surface);
 }
-div {
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
 }
-div > app-overlay {
+ul > app-overlay {
   display: flex;
   align-items: center;
   min-height: 48px;
 }
-div > app-overlay > span {
+ul > app-overlay > li {
   display: flex;
   align-items: center;
   padding: 8px 16px 8px 16px;
@@ -30,8 +31,8 @@ div > app-overlay > span {
 </style>
 
 <!-- Template -->
-<div>
-</div>
+<ul>
+</ul>
 `
 
 class AppMenu extends HTMLElement {
@@ -50,15 +51,14 @@ class AppMenu extends HTMLElement {
 
   connectedCallback() {
     const sr = this._shadowRoot
-    console.log(this.$items)
 
     this.$items.forEach(item => {
-      const span = document.createElement('span')
-      span.innerHTML = item.text
+      const li = document.createElement('li')
+      li.innerHTML = item.text
 
       const overlay = document.createElement('app-overlay')
-      overlay.appendChild(span)
-      overlay.onclick = sr.querySelector('div').appendChild(overlay)
+      overlay.appendChild(li)
+      overlay.onclick = sr.querySelector('ul').appendChild(overlay)
     })
   }
 
