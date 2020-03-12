@@ -7,21 +7,11 @@ appSelectTemplate.innerHTML = `
   display: inline-block;
   width: 250px;
 }
+:host:focus {
+  outline: none;
+}
 app-text-field {
   width: 100%;
-  height: 56px;
-}
-.menu-wrapper {
-  position: relative;
-  width: 100%;
-}
-app-menu {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-
-  opacity: 0;
 }
 </style>
 
@@ -29,9 +19,8 @@ app-menu {
 <app-text-field>
   <span slot="label">Password</span>
 </app-text-field>
-<div class="menu-wrapper">
-  <app-menu></app-menu>
-</div>
+<app-menu></app-menu>
+
 `
 
 class AppSelect extends HTMLElement {
@@ -45,7 +34,11 @@ class AppSelect extends HTMLElement {
     this._shadowRoot.innerHTML = appSelectTemplate.innerHTML
 
     this._defaultLabel = 'Label'
-    this.$items = [{ text: 'one' }, { text: 'two' }, { text: 'three' }]
+    this.$items = [
+      { text: 'one', value: 1 },
+      { text: 'two', value: 2 },
+      { text: 'three', value: 3 },
+    ]
 
     this._menu = this._shadowRoot.querySelector('app-menu')
     this._menu.items = this.$items
@@ -58,33 +51,40 @@ class AppSelect extends HTMLElement {
   }
 
   connectedCallback() {
-    const style = this._menu.style
-    this._opener.addEventListener('onfocus', () => {
-      this.showMenu(style)
+    if (!this.hasAttribute('tabindex')) this.setAttribute('tabindex', 0)
+
+    this.onfocus = () => {
+      this.style.outline = 'none'
+      this._menu.items = this.$items
+      this._menu.show()
+    }
+    this.onblur = () => {
+      this._menu.hide()
+    }
+
+    this._menu.addEventListener('select', event => {
+      this.handleSelect(event.detail)
+      this.blur()
     })
-    this._opener.addEventListener('onblur', () => {
-      this.hideMenu(style)
+    this._opener.addEventListener('focus', () => {
+      this._menu.show()
     })
-    this._opener.addEventListener('oninput', input => {
-      this.handleInput(input)
+
+    this._opener.addEventListener('oninput', event => {
+      this.handleInput(event.detail)
     })
   }
 
-  showMenu(style) {
-    this._menu.items = this.$items
-    style.transition = 'opacity 0.1s linear'
-    style.opacity = 1
-  }
-  hideMenu(style) {
-    style.transition = ''
-    style.opacity = 0
-  }
-
+  // Filter menu items
   handleInput(input) {
-    const filtered = this.$items.filter(item =>
-      item.text.includes(input.detail)
-    )
+    const filtered = this.$items.filter(item => item.text.includes(input))
     this._menu.items = filtered
+  }
+
+  // Put selected item text into text-field's input
+  handleSelect(item) {
+    this._selected = item
+    this._opener.inputValue = item.text
   }
 
   // Getters and setters

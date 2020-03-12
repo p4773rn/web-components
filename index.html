@@ -21,6 +21,7 @@
     <script src="AppCard.js"></script>
     <script src="AppMenu.js"></script>
     <script src="AppOverlay.js"></script>
+    <script src="AppRadioButton.js"></script>
     <script src="AppSelect.js"></script>
     <script src="AppTextField.js"></script>
 
@@ -86,11 +87,58 @@
       <app-card headline="Select + Menu">
         <app-select></app-select>
       </app-card>
-      <app-card headline="RadioButton"></app-card>
+      <app-card headline="RadioButton">
+        <app-radio-button
+          class="appRadioButtonDemoHorizontal"
+        ></app-radio-button>
+        <app-radio-button
+          class="appRadioButtonDemoVertical"
+          vertical
+        ></app-radio-button>
+      </app-card>
       <app-card headline="DataTable"></app-card>
       <app-card headline="Overlay">
         <app-overlay>Overlay</app-overlay>
       </app-card>
     </div>
+
+    <!-- Setting properties -->
+    <script>
+      const radioButtonItemsHorizontal = [
+        {
+          value: 1,
+          text: 'Hor',
+        },
+        {
+          value: 2,
+          text: 'Izon',
+        },
+        {
+          value: 3,
+          text: 'Tal',
+        },
+      ]
+      const radioButtonItemsVertical = [
+        {
+          value: 1,
+          text: 'Ver',
+        },
+        {
+          value: 2,
+          text: 'Ti',
+        },
+        {
+          value: 3,
+          text: 'Cal',
+        },
+      ]
+
+      document.querySelector(
+        '.appRadioButtonDemoHorizontal'
+      ).items = radioButtonItemsHorizontal
+      document.querySelector(
+        '.appRadioButtonDemoVertical'
+      ).items = radioButtonItemsVertical
+    </script>
   </body>
 </html>

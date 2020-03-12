@@ -4,19 +4,30 @@ appMenuTemplate.innerHTML = `
 <style>
 :host {
   display: block;
-  
-  min-width: 112px;
-  border-radius: 4px;
+  position: relative;
+  width: 100%;
 
-  box-shadow: var(--elevation-2dp);
-  background: var(--surface);
+  min-width: 112px;
+
+  transition: opacity 100ms;
 }
 ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
+
   display: flex;
   flex-direction: column;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  border-radius: 4px;
+
+  box-shadow: var(--elevation-2dp);
+  background: var(--surface);
 }
 ul > app-overlay {
   display: flex;
@@ -28,11 +39,22 @@ ul > app-overlay > li {
   align-items: center;
   padding: 8px 16px 8px 16px;
 }
+
+:host([class="hidden"]) {
+
+  opacity: 0;
+  z-index: -1;
+}
+:host([class="shown"]) {
+
+  opacity: 1;
+  z-index: 1;
+}
 </style>
 
 <!-- Template -->
-<ul>
-</ul>
+<ul></ul>
+
 `
 
 class AppMenu extends HTMLElement {
@@ -50,6 +72,7 @@ class AppMenu extends HTMLElement {
   }
 
   connectedCallback() {
+    this.classList.add('hidden')
     this._render()
   }
 
@@ -60,6 +83,7 @@ class AppMenu extends HTMLElement {
 
     // Clear list
     list.innerHTML = ''
+    // Add items
     this._items.forEach(item => {
       const typography = document.createElement('app-body2')
       typography.innerHTML = item.text
@@ -70,12 +94,23 @@ class AppMenu extends HTMLElement {
       const overlay = document.createElement('app-overlay')
       overlay.appendChild(li)
       overlay.onclick = () => {
-        list.dispatchEvent()
+        this.dispatchEvent(new CustomEvent('select', { detail: item }))
       }
       list.appendChild(overlay)
     })
   }
 
+  hide() {
+    this.classList = ''
+    this.classList.add('hidden')
+  }
+
+  show() {
+    this.classList = ''
+    this.classList.add('shown')
+  }
+
+  // Getters and setters
   get items() {
     return this._items
   }
@@ -83,7 +118,6 @@ class AppMenu extends HTMLElement {
     this._items = val
     this._render()
   }
-  // Getters and setters
 }
 
 customElements.define('app-menu', AppMenu)

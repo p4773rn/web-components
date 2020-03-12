@@ -9,6 +9,7 @@ appTextFieldTemplate.innerHTML = `
   position: relative;
 
   height: 100%;
+  width: 250px;
 
   font-family: Roboto, sans-serif;
   background: transparent;
@@ -23,11 +24,10 @@ appTextFieldTemplate.innerHTML = `
 input {
   position: absolute;
   width: calc(100% - 24px);
-  padding: 12px 8px 12px 14px;
+  padding: 13px 9px 13px 15px;
   border: none;
-  top: calc((100% - 24px - 1rem) / 2 - 1px);
-  /* top: 100%; */
-  left: 1px; 
+  top: 0;
+  left: 0; 
   font-size: 1rem;
   background: transparent;
 
@@ -43,6 +43,9 @@ input:focus {
   transition: all 150ms;
   border-radius: 4px;
   border: 1px solid var(--divider);
+}
+.outline:focus {
+  outline: none;
 }
 .leading {
   width: 10px;
@@ -73,7 +76,7 @@ input:focus {
 /* Label */
 label {
   position: relative;
-  top: calc(50% - 0.5rem - 1px);
+  top: 0;
   left: 0;
 
   font-size: 1rem;
@@ -136,21 +139,29 @@ class AppTextField extends HTMLElement {
 
     const shadowRoot = this.attachShadow({ mode: 'open' })
     shadowRoot.appendChild(appTextFieldTemplate.content.cloneNode(true))
-    this.$input = shadowRoot.querySelector('input')
+    this._input = shadowRoot.querySelector('input')
   }
 
   connectedCallback() {
-    this.$input.onfocus = () => {
-      this.dispatchEvent(new CustomEvent('onfocus'))
+    this._input.onfocus = () => {
+      this.dispatchEvent(new CustomEvent('focus'))
     }
-    this.$input.onblur = () => {
-      this.dispatchEvent(new CustomEvent('onblur'))
+    this._input.onblur = () => {
+      this.dispatchEvent(new CustomEvent('blur'))
     }
-    this.$input.oninput = () => {
+    this._input.oninput = () => {
       this.dispatchEvent(
-        new CustomEvent('oninput', { detail: this.$input.value })
+        new CustomEvent('oninput', { detail: this._input.value })
       )
     }
+  }
+
+  // Getters and setters
+  get inputValue() {
+    return this._input.value
+  }
+  set inputValue(val) {
+    this._input.value = val
   }
 }
 

@@ -3,8 +3,8 @@ body {
   background: rgb(236, 238, 247);
 }
 .grid {
-  display: grid;
-  grid-template-columns: auto auto auto;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .grid > app-card {
