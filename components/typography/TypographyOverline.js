@@ -1,11 +1,8 @@
-const appOverlineTemplate = document.createElement('template')
-appOverlineTemplate.innerHTML = `
+const typographyOverlineTemplate = document.createElement('template')
+typographyOverlineTemplate.innerHTML = `
 
 <!-- Style -->
 <style>
-:host {
-  display: inline;
-}
 span {
   font-family: 'Roboto', sans-serif;  
   font-weight: normal;
@@ -21,12 +18,12 @@ span {
 </span>
 `
 
-class AppOverline extends HTMLElement {
+class TypographyOverline extends HTMLElement {
   constructor() {
     super()
     this._shadowRoot = this.attachShadow({ mode: 'open' })
-    this.shadowRoot.innerHTML = appOverlineTemplate.innerHTML
+    this.shadowRoot.innerHTML = typographyOverlineTemplate.innerHTML
   }
 }
 
-customElements.define('app-overline', AppOverline)
+customElements.define('typography-overline', TypographyOverline)

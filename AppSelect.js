@@ -78,6 +78,11 @@ class AppSelect extends HTMLElement {
   // Filter menu items
   handleInput(input) {
     const filtered = this.$items.filter(item => item.text.includes(input))
+
+    if (filtered.length === 0) {
+      // TODO: restrict selecting non-existing item
+    }
+
     this._menu.items = filtered
   }
 

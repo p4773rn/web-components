@@ -26,19 +26,19 @@
     <script src="AppTextField.js"></script>
 
     <!-- Typography -->
-    <script src="app-typography/AppH1.js"></script>
-    <script src="app-typography/AppH2.js"></script>
-    <script src="app-typography/AppH3.js"></script>
-    <script src="app-typography/AppH4.js"></script>
-    <script src="app-typography/AppH5.js"></script>
-    <script src="app-typography/AppH6.js"></script>
-    <script src="app-typography/AppSubtitle1.js"></script>
-    <script src="app-typography/AppSubtitle2.js"></script>
-    <script src="app-typography/AppBody1.js"></script>
-    <script src="app-typography/AppBody2.js"></script>
-    <script src="app-typography/AppButtonText.js"></script>
-    <script src="app-typography/AppCaption.js"></script>
-    <script src="app-typography/AppOverline.js"></script>
+    <script src="components/typography/TypographyHeadline1.js"></script>
+    <script src="components/typography/TypographyHeadline2.js"></script>
+    <script src="components/typography/TypographyHeadline3.js"></script>
+    <script src="components/typography/TypographyHeadline4.js"></script>
+    <script src="components/typography/TypographyHeadline5.js"></script>
+    <script src="components/typography/TypographyHeadline6.js"></script>
+    <script src="components/typography/TypographySubtitle1.js"></script>
+    <script src="components/typography/TypographySubtitle2.js"></script>
+    <script src="components/typography/TypographyBody1.js"></script>
+    <script src="components/typography/TypographyBody2.js"></script>
+    <script src="components/typography/TypographyButton.js"></script>
+    <script src="components/typography/TypographyCaption.js"></script>
+    <script src="components/typography/TypographyOverline.js"></script>
 
     <!-- Module Components -->
   </head>
@@ -63,34 +63,36 @@
       </app-card>
       <app-card headline="Typography">
         <div style="display: flex; flex-direction: column;">
-          <app-h1>Headline 1</app-h1>
-          <app-h2>Headline 2</app-h2>
-          <app-h3>Headline 3</app-h3>
-          <app-h4>Headline 4</app-h4>
-          <app-h5>Headline 5</app-h5>
-          <app-h6>Headline 6</app-h6>
-          <app-subtitle1>Subtitle 1</app-subtitle1>
-          <app-subtitle2>Subtitle 2</app-subtitle2>
+          <typography-headline1>Headline 1</typography-headline1>
+          <typography-headline2>Headline 2</typography-headline2>
+          <typography-headline3>Headline 3</typography-headline3>
+          <typography-headline4>Headline 4</typography-headline4>
+          <typography-headline5>Headline 5</typography-headline5>
+          <typography-headline6>Headline 6</typography-headline6>
+          <typography-subtitle1>Subtitle 1</typography-subtitle1>
+          <typography-subtitle2>Subtitle 2</typography-subtitle2>
 
-          <app-body1>Body 1</app-body1>
-          <app-body2>Body 2</app-body2>
-          <app-button-text>Submit</app-button-text>
-          <app-caption>Caption</app-caption>
-          <app-overline>Overline</app-overline>
-          <app-typography type="body-1" text="Body 1"></app-typography>
-          <app-typography type="body-2" text="Body 2"></app-typography>
-          <app-typography type="button" text="Button"></app-typography>
-          <app-typography type="caption" text="Caption"></app-typography>
-          <app-typography type="overline" text="Overline"></app-typography>
+          <typography-body1>Body 1</typography-body1>
+          <typography-body2>Body 2</typography-body2>
+          <typography-button>Submit</typography-button>
+          <typography-caption>Caption</typography-caption>
+          <typography-overline>Overline</typography-overline>
         </div>
       </app-card>
       <app-card headline="Select + Menu">
-        <app-select></app-select>
+        <app-select>
+          <app-select-item>Name 1</app-select-item>
+          <app-select-item>Name 2</app-select-item>
+          <app-select-item>Name 3</app-select-item>
+          <app-select-item>Name 4</app-select-item>
+          <app-select-item>Name 5</app-select-item>
+        </app-select>
       </app-card>
       <app-card headline="RadioButton">
         <app-radio-button
           class="appRadioButtonDemoHorizontal"
         ></app-radio-button>
+        <hr />
         <app-radio-button
           class="appRadioButtonDemoVertical"
           vertical

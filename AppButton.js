@@ -89,7 +89,7 @@ appButtonTemplate.innerHTML = `
     z-index: 1;
   }
 </style>
-<button onClick="">
+<button>
   <app-button-text>
     <slot>Submit</slot>
   </app-button-text>
@@ -101,6 +101,7 @@ class AppButton extends HTMLElement {
   static get observedAttributes() {
     return ['type']
   }
+
   constructor() {
     super()
 
@@ -115,7 +116,6 @@ class AppButton extends HTMLElement {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    const hasValue = newValue !== null
     if (newValue === 'disabled') {
       this.shadowRoot.querySelector('button').setAttribute('disabled', '')
     }

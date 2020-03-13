@@ -1,11 +1,8 @@
-const appCaptionTemplate = document.createElement('template')
-appCaptionTemplate.innerHTML = `
+const typographyCaptionTemplate = document.createElement('template')
+typographyCaptionTemplate.innerHTML = `
 
 <!-- Style -->
 <style>
-:host {
-  display: inline;
-}
 span {
   font-family: 'Roboto', sans-serif;  
   font-weight: normal;
@@ -20,12 +17,12 @@ span {
 </span>
 `
 
-class AppCaption extends HTMLElement {
+class TypographyCaption extends HTMLElement {
   constructor() {
     super()
     this._shadowRoot = this.attachShadow({ mode: 'open' })
-    this.shadowRoot.innerHTML = appCaptionTemplate.innerHTML
+    this.shadowRoot.innerHTML = typographyCaptionTemplate.innerHTML
   }
 }
 
-customElements.define('app-caption', AppCaption)
+customElements.define('typography-caption', TypographyCaption)

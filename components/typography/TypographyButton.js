@@ -1,11 +1,8 @@
-const appButtonTextTemplate = document.createElement('template')
-appButtonTextTemplate.innerHTML = `
+const typographyButtonTemplate = document.createElement('template')
+typographyButtonTemplate.innerHTML = `
 
 <!-- Style -->
 <style>
-:host {
-  display: inline;
-}
 span {
   font-family: 'Roboto', sans-serif;  
   font-weight: 500;
@@ -21,12 +18,12 @@ span {
 </span>
 `
 
-class AppButtonText extends HTMLElement {
+class TypographyButton extends HTMLElement {
   constructor() {
     super()
     this._shadowRoot = this.attachShadow({ mode: 'open' })
-    this.shadowRoot.innerHTML = appButtonTextTemplate.innerHTML
+    this.shadowRoot.innerHTML = typographyButtonTemplate.innerHTML
   }
 }
 
-customElements.define('app-button-text', AppButtonText)
+customElements.define('typography-button', TypographyButton)

@@ -15,34 +15,36 @@ input[type='radio'] {
   /*removes original button*/
 }
 
-label:before {
+.outerCircle {
   /*styles outer circle*/
-  content: " ";
-  display: inline-block;
-  position: relative;
-  top: 5px;
-  margin: 0 5px 0 0;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
+
   border-radius: 11px;
-  border: 2px solid var(--divider);
+  border: 2px solid ;
+  border-color: var(--divider);
   background-color: transparent;
 }
 
 label {
+  display: flex;
+  align-items: center;
   position: relative;
+  /* padding: 8px 20px 8px 32px; */
 }
 
-label input:checked + span {
+input:checked + .innerCircle {
   /*styles inside circle*/
-  border-radius: 11px;
-  width: 12px;
-  height: 12px;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
   position: absolute;
-  top: 11px;
-  left: 6px;
-  display: block;
+  top: 9px;
+  left: 5px;
   background-color: var(--primary);
+}
+input:focus + app-overlay {
+  
 }
 </style>
 
@@ -74,14 +76,22 @@ class AppRadioButton extends HTMLElement {
       radioButton.setAttribute('id', item.value)
       radioButton.setAttribute('value', item.value)
 
-      const insideCircle = document.createElement('span')
+      const innerCircle = document.createElement('div')
+      innerCircle.classList.add('innerCircle')
+
+      const outerCircle = document.createElement('div')
+      outerCircle.classList.add('outerCircle')
 
       const label = document.createElement('label')
       label.setAttribute('for', item.value)
-      label.innerHTML = item.text
 
+      const text = document.createElement('app-body2')
+      text.innerHTML = item.text
+
+      label.appendChild(outerCircle)
       label.appendChild(radioButton)
-      label.appendChild(insideCircle)
+      label.appendChild(innerCircle)
+      label.appendChild(text)
 
       this._shadowRoot.appendChild(label)
     })

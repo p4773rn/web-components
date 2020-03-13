@@ -1,14 +1,10 @@
-const appBody1Template = document.createElement('template')
-appBody1Template.innerHTML = `
+const typographyBody1Template = document.createElement('template')
+typographyBody1Template.innerHTML = `
 
 <!-- Style -->
 <style>
-:host {
-  display: block;
-}
 p {
   font-family: 'Roboto', sans-serif;
-  margin: 0;
   font-weight: normal;
   font-size: 16px;
   letter-spacing: 0.5px;
@@ -21,12 +17,12 @@ p {
 </p>
 `
 
-class AppBody1 extends HTMLElement {
+class TypographyBody1 extends HTMLElement {
   constructor() {
     super()
     this._shadowRoot = this.attachShadow({ mode: 'open' })
-    this.shadowRoot.innerHTML = appBody1Template.innerHTML
+    this.shadowRoot.innerHTML = typographyBody1Template.innerHTML
   }
 }
 
-customElements.define('app-body1', AppBody1)
+customElements.define('typography-body1', TypographyBody1)
