@@ -16,7 +16,6 @@ appButtonTemplate.innerHTML = `
     padding: var(--horizontal-3);
 
     border: none;
-    text-decoration: none;
     background: none;
 
     box-shadow: var(--elevation-0dp);
@@ -40,7 +39,7 @@ appButtonTemplate.innerHTML = `
     opacity: 0.16;
   }
 
-  app-button-text {
+  typography-button {
     position: relative;
     color: var(--primary);
 
@@ -48,7 +47,7 @@ appButtonTemplate.innerHTML = `
   }
 
   /* Disabled style */
-  :host([type="disabled"]) {
+  :host([disabled]) {
     cursor: default;
     pointer-events: none;
     user-select: none;
@@ -57,7 +56,7 @@ appButtonTemplate.innerHTML = `
     background: var(--disabled);
     cursor: default;
   }
-  button:disabled > app-button-text {
+  button:disabled > typography-button {
     color: var(--on-disabled)
   }
 
@@ -72,7 +71,7 @@ appButtonTemplate.innerHTML = `
   :host([type="contained"]) > button:active {
     box-shadow: var(--elevation-8dp);
   }
-  :host([type="contained"]) > button > app-button-text {
+  :host([type="contained"]) > button > typography-button {
     color: var(--on-primary)
   }
 
@@ -90,43 +89,43 @@ appButtonTemplate.innerHTML = `
   }
 </style>
 <button>
-  <app-button-text>
+  <typography-button>
     <slot>Submit</slot>
-  </app-button-text>
+  </typography-button>
   <span class="overlay"></span>
 </button>
 
 `
 class AppButton extends HTMLElement {
   static get observedAttributes() {
-    return ['type']
+    return ['type', 'disabled']
   }
 
   constructor() {
     super()
 
-    const shadowRoot = this.attachShadow({ mode: 'open' })
-    shadowRoot.appendChild(appButtonTemplate.content.cloneNode(true))
+    this.attachShadow({ mode: 'open' })
+    this.shadowRoot.appendChild(appButtonTemplate.content.cloneNode(true))
+    this._button = this.shadowRoot.querySelector('button')
   }
 
   connectedCallback() {
-    const button = this.shadowRoot.querySelector('button')
     if (!this.hasAttribute('role')) this.setAttribute('role', 'button')
-    if (this.type === 'disabled') button.setAttribute('disabled', '')
+
+    if (!this.hasAttribute('type')) this.setAttribute('type', 'text')
+    if (this.hasAttribute('disabled')) this._button.setAttribute('disabled', '')
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    if (newValue === 'disabled') {
-      this.shadowRoot.querySelector('button').setAttribute('disabled', '')
+    if (name === 'disabled') {
+      this._button.setAttribute('disabled', '')
     }
   }
 
+  // Getters and setters
   get type() {
-    if (this.hasAttribute('type')) {
-      return this.attributes.type.value
-    } else {
-      return false
-    }
+    console.log(this.attributes.type.value)
+    return this.attributes.type.value
   }
   set type(val) {
     const hasType = Boolean(val)
@@ -136,6 +135,11 @@ class AppButton extends HTMLElement {
       this.removeAttribute('type')
     }
   }
+
+  get disabled() {
+    return this.hasAttribute('disabled')
+  }
+  set disabled(val) {}
 }
 
 customElements.define('app-button', AppButton)

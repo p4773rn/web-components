@@ -14,7 +14,7 @@ appCardTemplate.innerHTML = `
   background: var(--surface-header);
   padding: var(--all-2);
 }
-app-typography {
+typography-subtitle2 {
   text-align: left;
   color: var(--on-surface);
 }
@@ -25,7 +25,7 @@ app-typography {
 
 <!-- Template -->
 <div class="header">
-  <app-subtitle1></app-subtitle1>
+  <typography-subtitle2></typography-subtitle2>
 </div>
 <div class="content">
   <slot></slot>
@@ -41,7 +41,7 @@ class AppCard extends HTMLElement {
     super()
     this._shadowRoot = this.attachShadow({ mode: 'open' })
     this.shadowRoot.innerHTML = appCardTemplate.innerHTML
-    this.$headline = this._shadowRoot.querySelector('app-subtitle1')
+    this.$headline = this._shadowRoot.querySelector('typography-subtitle2')
   }
 
   connectedCallback() {

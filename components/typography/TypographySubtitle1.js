@@ -5,6 +5,7 @@ typographySubtitle1Template.innerHTML = `
 <style>
 h6 {
   font-family: 'Roboto', sans-serif;
+  margin: 0;
   font-weight: normal;
   font-size: 16px;
   letter-spacing: 0.15px;
